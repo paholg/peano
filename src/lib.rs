@@ -1,8 +1,6 @@
 /*!
 Peano numbers allow us to do arithmetic at compile time using Rust's type system.
 
-This module should not require much direct interaction from users of **dimensioned**.
-
 The basic idea of the peano numbers is that we first define the number `Zero`. Then, we
 inductively define the rest of the natural numbers. For any non-negative natural number
 `N`, define its successor, `Succ<N>`, a positive number. We can now count!
@@ -22,8 +20,6 @@ Conceptually, we now have access to all integers. In practice, we have access to
 the numbers from -63 to 63 unless we use the `#![recursion_limit="N"]` lint to increase
 the allowed number of embedded traits.
 
-These numbers are used to track powers of units in **dimensioned**.
-
 In addition to the traits created here, the traits `Add`, `Sub`, `Mul`, `Div`, and `Neg`
 are all implemented for Peano numbers. Note that these traits are used here very
 differently than is typical. The functions that come with them are not used at all (and
@@ -32,7 +28,7 @@ with the associated type acting as the result of the computation.
 
 # Example
 ```
-use dimensioned::peano::{P2, P3, P4, ToInt};
+use peano::{P2, P3, P4, ToInt};
 # use std::ops::{Add, Div};
 // 2 + 3 == 5
 assert_eq!( 5, <<P2 as Add<P3>>::Output as ToInt>::to_int() );
@@ -44,6 +40,10 @@ assert_eq!( 2, <<P4 as Div<P2>>::Output as ToInt>::to_int() );
 Note that the `ToInt` trait here is only used to get an integer output; it is the only
 runtime operation defined for Peano numbers, and exists primarily for debugging
 purposes. What is important and generally used is the associated type `Output`.
+
+
+**Note:** Arithmetic with these numbers is very slow unless the numbers are very small.
+It is strongly recommended that you use the [typenum](http://paholg.com/doc/typenum) crate instead.
  */
 
 #![doc(html_root_url = "http://paholg.com/peano")]
@@ -319,7 +319,7 @@ impl<Lhs: Peano> DivPrivate<Zero> for Lhs {
 
 # Example:
 ```
-use dimensioned::peano::{Same, Succ, P1, P2, ToInt};
+use peano::{Same, Succ, P1, P2, ToInt};
 
 assert_eq!(2, <<Succ<P1> as Same<P2>>::Output as ToInt>::to_int());
 ```
@@ -346,7 +346,7 @@ function `to_int()`.
 
 # Example:
 ```
-use dimensioned::peano::{P2, ToInt};
+use peano::{P2, ToInt};
 
 assert_eq!(2, <P2 as ToInt>::to_int());
 ```

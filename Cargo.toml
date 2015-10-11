@@ -11,4 +11,3 @@ license = "MIT/Apache-2.0"
 
 [lib]
 name = "peano"
-plugin = true
