@@ -46,7 +46,7 @@ purposes. What is important and generally used is the associated type `Output`.
 It is strongly recommended that you use the [typenum](http://paholg.com/doc/typenum) crate instead.
  */
 
-#![doc(html_root_url = "http://paholg.com/peano")]
+#![doc(html_root_url = "http://paholg.com/peano/doc")]
 #![warn(missing_docs)]
 #![crate_type="lib"]
 
