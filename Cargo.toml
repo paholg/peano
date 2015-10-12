@@ -1,10 +1,10 @@
 [package]
 name = "peano"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["Paho Lurie-Gregg <paho@paholg.com>"]
-description = "The peano numbers implemented in Rust's type system."
-homepage = "http://paholg.com/peano"
-documentation = "http://paholg.com/doc/peano"
+description = "The peano numbers implemented in Rust's type system. Consider using typenum instead for much faster type-level numbers."
+homepage = "http://paholg.com/project/peano"
+documentation = "http://paholg.com/peano"
 repository = "https://github.com/paholg/peano"
 readme = "README.md"
 license = "MIT/Apache-2.0"
