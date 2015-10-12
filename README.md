@@ -1,4 +1,4 @@
-[![crates.io](https://img.shields.io/crates/v/peano.svg)](https://crates.io/crates/peanotypenum)
+[![crates.io](https://img.shields.io/crates/v/peano.svg)](https://crates.io/crates/peano)
 [![Build Status](https://travis-ci.org/paholg/peano.svg?branch=master)](https://travis-ci.org/paholg/peano)
 
 # Peano
