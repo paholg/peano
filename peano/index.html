@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `peano` crate.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, peano">
+
+    <title>peano - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'></p><script>window.sidebarCurrent = {name: 'peano', ty: 'mod', relpath: '../'};</script>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>peano</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-0' class='srclink' href='../src/peano/lib.rs.html#1-366' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Peano numbers allow us to do arithmetic at compile time using Rust&#39;s type system.</p>
+
+<p>The basic idea of the peano numbers is that we first define the number <code>Zero</code>. Then, we
+inductively define the rest of the natural numbers. For any non-negative natural number
+<code>N</code>, define its successor, <code>Succ&lt;N&gt;</code>, a positive number. We can now count!</p>
+
+<p>Because we want all the integers and not just the natural numbers, we have to be a
+little bit careful with these definitions, which is why it is specified that <code>N</code> above
+must not be negative. Otherwise, when we define predecessors we could end up with
+<code>Pred&lt;Succ&lt;Zero&gt;&gt;</code> which should represent the number <code>Zero</code> but is a distinct type and
+would not be treated as such by the compiler.</p>
+
+<p>We can now define negative numbers: For any non-positive natural number <code>N</code>, define
+its predecessor, <code>Pred&lt;N&gt;</code>, a negative number.</p>
+
+<p>By the definitions of <code>Pred</code> and <code>Succ</code>, we disallow them to be used together.</p>
+
+<p>Conceptually, we now have access to all integers. In practice, we have access to
+the numbers from -63 to 63 unless we use the <code>#![recursion_limit=&quot;N&quot;]</code> lint to increase
+the allowed number of embedded traits.</p>
+
+<p>In addition to the traits created here, the traits <code>Add</code>, <code>Sub</code>, <code>Mul</code>, <code>Div</code>, and <code>Neg</code>
+are all implemented for Peano numbers. Note that these traits are used here very
+differently than is typical. The functions that come with them are not used at all (and
+will throw an error if you try). Instead, we are using them as operators on <em>types</em>,
+with the associated type acting as the result of the computation.</p>
+
+<h1 id="example" class='section-header'><a
+                           href="#example">Example</a></h1><pre class='rust rust-example-rendered'>
+<span class='kw'>use</span> <span class='ident'>peano</span>::{<span class='ident'>P2</span>, <span class='ident'>P3</span>, <span class='ident'>P4</span>, <span class='ident'>ToInt</span>};
+<span class='comment'>// 2 + 3 == 5</span>
+<span class='macro'>assert_eq</span><span class='macro'>!</span>( <span class='number'>5</span>, <span class='op'>&lt;&lt;</span><span class='ident'>P2</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>P3</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>ToInt</span><span class='op'>&gt;</span>::<span class='ident'>to_int</span>() );
+
+<span class='comment'>// 4 / 2 == 2</span>
+<span class='macro'>assert_eq</span><span class='macro'>!</span>( <span class='number'>2</span>, <span class='op'>&lt;&lt;</span><span class='ident'>P4</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>P2</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>ToInt</span><span class='op'>&gt;</span>::<span class='ident'>to_int</span>() );</pre>
+
+<p>Note that the <code>ToInt</code> trait here is only used to get an integer output; it is the only
+runtime operation defined for Peano numbers, and exists primarily for debugging
+purposes. What is important and generally used is the associated type <code>Output</code>.</p>
+
+<p><strong>Note:</strong> Arithmetic with these numbers is very slow unless the numbers are very small.
+It is strongly recommended that you use the <a href="http://paholg.com/doc/typenum">typenum</a> crate instead.</p>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Pred.html'
+                               title='peano::Pred'>Pred</a></td>
+                        <td class='docblock short'>
+                             <p>For any non-positive Peano number <code>N</code>, we define its predecessor, <code>Pred&lt;N&gt;</code>.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Succ.html'
+                               title='peano::Succ'>Succ</a></td>
+                        <td class='docblock short'>
+                             <p>For any non-negative Peano number <code>N</code>, we define its successor, <code>Succ&lt;N&gt;</code>.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Zero.html'
+                               title='peano::Zero'>Zero</a></td>
+                        <td class='docblock short'>
+                             <p>The type corresponding to the Peano number 0.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.NonNeg.html'
+                               title='peano::NonNeg'>NonNeg</a></td>
+                        <td class='docblock short'>
+                             <p>Implemented for <code>Zero</code> and all numbers of the form <code>Succ&lt;N: NonNeg&gt;</code>.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.NonPos.html'
+                               title='peano::NonPos'>NonPos</a></td>
+                        <td class='docblock short'>
+                             <p>Implemented for <code>Zero</code> and all numbers of the form <code>Pred&lt;N: NonPos&gt;</code>.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.NonZero.html'
+                               title='peano::NonZero'>NonZero</a></td>
+                        <td class='docblock short'>
+                             <p>Implemented for all Peano numbers of the form <code>Succ&lt;M: NonNeg&gt;</code> or <code>Pred&lt;N: NonPos&gt;</code>.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.Peano.html'
+                               title='peano::Peano'>Peano</a></td>
+                        <td class='docblock short'>
+                             <p>All numbers defined in this module belong to the <strong>Peano</strong> trait. It should not be
+implemented for anything else.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.Same.html'
+                               title='peano::Same'>Same</a></td>
+                        <td class='docblock short'>
+                             <p><code>Same</code> is used to ensure that two types are the same. Its <code>Output</code> should <strong>always</strong> be that type.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.ToInt.html'
+                               title='peano::ToInt'>ToInt</a></td>
+                        <td class='docblock short'>
+                             <p>Convert a Peano number to the integer it represents.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N1.html'
+                               title='peano::N1'>N1</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -1; <code>N1 = Pred&lt;Zero&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N2.html'
+                               title='peano::N2'>N2</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -2; <code>N2 = Pred&lt;N1&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N3.html'
+                               title='peano::N3'>N3</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -3; <code>N3 = Pred&lt;N2&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N4.html'
+                               title='peano::N4'>N4</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -4; <code>N4 = Pred&lt;N3&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N5.html'
+                               title='peano::N5'>N5</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -5; <code>N5 = Pred&lt;N4&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N6.html'
+                               title='peano::N6'>N6</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -6; <code>N6 = Pred&lt;N5&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N7.html'
+                               title='peano::N7'>N7</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -7; <code>N7 = Pred&lt;N6&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N8.html'
+                               title='peano::N8'>N8</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -8; <code>N8 = Pred&lt;N7&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N9.html'
+                               title='peano::N9'>N9</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -9; <code>N9 = Pred&lt;N8&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P1.html'
+                               title='peano::P1'>P1</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +1; <code>P1 = Succ&lt;Zero&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P2.html'
+                               title='peano::P2'>P2</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +2; <code>P2 = Succ&lt;P1&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P3.html'
+                               title='peano::P3'>P3</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +3; <code>P3 = Succ&lt;P2&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P4.html'
+                               title='peano::P4'>P4</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +4; <code>P4 = Succ&lt;P3&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P5.html'
+                               title='peano::P5'>P5</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +5; <code>P5 = Succ&lt;P4&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P6.html'
+                               title='peano::P6'>P6</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +6; <code>P6 = Succ&lt;P5&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P7.html'
+                               title='peano::P7'>P7</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +7; <code>P7 = Succ&lt;P6&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P8.html'
+                               title='peano::P8'>P8</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +8; <code>P8 = Succ&lt;P7&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P9.html'
+                               title='peano::P9'>P9</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +9; <code>P9 = Succ&lt;P8&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div>
+            <div class="shortcuts">
+                <h1>Keyboard Shortcuts</h1>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h1>Search Tricks</h1>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>typedef</code> (or
+                    <code>tdef</code>).
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "peano";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>

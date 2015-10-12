@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Pred` struct in crate `peano`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Pred">
+
+    <title>peano::Pred - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='index.html'>peano</a></p><script>window.sidebarCurrent = {name: 'Pred', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>peano</a>::<wbr><a class='struct' href=''>Pred</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-77' class='srclink' href='../src/peano/lib.rs.html#72-74' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Pred&lt;N: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a>&gt; {
+    // some fields omitted
+}</pre><div class='docblock'><p>For any non-positive Peano number <code>N</code>, we define its predecessor, <code>Pred&lt;N&gt;</code>.</p>
+
+<p>This gives us negative Peano numbers.</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;N: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a>&gt; <a class='trait' href='../peano/trait.Peano.html' title='peano::Peano'>Peano</a> for <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;N&gt;</code></h3><div class='impl-items'></div><h3 class='impl'><code>impl&lt;N: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a>&gt; <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a> for <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;N&gt;</code></h3><div class='impl-items'></div><h3 class='impl'><code>impl&lt;N: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a>&gt; <a class='trait' href='../peano/trait.NonZero.html' title='peano::NonZero'>NonZero</a> for <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;N&gt;</code></h3><div class='impl-items'></div><h3 class='impl'><code>impl&lt;Lhs, Rhs&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Add.html' title='core::ops::Add'>Add</a>&lt;Rhs&gt; for <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;Lhs&gt; <span class='where'>where Lhs: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a> + <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Add.html' title='core::ops::Add'>Add</a>&lt;Rhs&gt;, Rhs: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a>, Lhs::Output: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a></span></code></h3><div class='docblock'><p>Add non-positive numbers to negative numbers (e.g. -2 + -3, -2 + 0)</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;Lhs::Output&gt;</code></h4>
+<h4 id='method.add' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Add.html#method.add' class='fnname'>add</a>(self, rhs: Rhs) -&gt; Self::Output</code></h4>
+</div><h3 class='impl'><code>impl&lt;Lhs, Rhs&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Add.html' title='core::ops::Add'>Add</a>&lt;<a class='struct' href='../peano/struct.Succ.html' title='peano::Succ'>Succ</a>&lt;Rhs&gt;&gt; for <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;Lhs&gt; <span class='where'>where Lhs: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a> + <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Add.html' title='core::ops::Add'>Add</a>&lt;Rhs&gt;, Rhs: <a class='trait' href='../peano/trait.NonNeg.html' title='peano::NonNeg'>NonNeg</a></span></code></h3><div class='docblock'><p>Add positive and negative numbers (e.g. -2 + 3)</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = Lhs::Output</code></h4>
+<h4 id='method.add' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Add.html#method.add' class='fnname'>add</a>(self, rhs: <a class='struct' href='../peano/struct.Succ.html' title='peano::Succ'>Succ</a>&lt;Rhs&gt;) -&gt; Self::Output</code></h4>
+</div><h3 class='impl'><code>impl&lt;N&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Neg.html' title='core::ops::Neg'>Neg</a> for <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;N&gt; <span class='where'>where N: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a> + <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Neg.html' title='core::ops::Neg'>Neg</a>, N::Output: <a class='trait' href='../peano/trait.NonNeg.html' title='peano::NonNeg'>NonNeg</a></span></code></h3><div class='docblock'><p>Negate negative numbers (e.g. -5 -&gt; 5)</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../peano/struct.Succ.html' title='peano::Succ'>Succ</a>&lt;N::Output&gt;</code></h4>
+<h4 id='method.neg' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Neg.html#method.neg' class='fnname'>neg</a>(self) -&gt; Self::Output</code></h4>
+</div><h3 class='impl'><code>impl&lt;Lhs&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Sub.html' title='core::ops::Sub'>Sub</a>&lt;<a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a>&gt; for <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;Lhs&gt; <span class='where'>where Lhs: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a></span></code></h3><div class='docblock'><p>Subtract Zero from negative numbers (e.g. -2 - 0)</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;Lhs&gt;</code></h4>
+<h4 id='method.sub' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Sub.html#method.sub' class='fnname'>sub</a>(self, rhs: <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a>) -&gt; Self::Output</code></h4>
+</div><h3 class='impl'><code>impl&lt;Lhs, Rhs&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Sub.html' title='core::ops::Sub'>Sub</a>&lt;<a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;Rhs&gt;&gt; for <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;Lhs&gt; <span class='where'>where Lhs: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a> + <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Sub.html' title='core::ops::Sub'>Sub</a>&lt;Rhs&gt;, Rhs: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a></span></code></h3><div class='docblock'><p>Subtract negative numbers from negative numbers (e.g. -3 - -4)</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = Lhs::Output</code></h4>
+<h4 id='method.sub' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Sub.html#method.sub' class='fnname'>sub</a>(self, rhs: <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;Rhs&gt;) -&gt; Self::Output</code></h4>
+</div><h3 class='impl'><code>impl&lt;Lhs, Rhs&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Sub.html' title='core::ops::Sub'>Sub</a>&lt;<a class='struct' href='../peano/struct.Succ.html' title='peano::Succ'>Succ</a>&lt;Rhs&gt;&gt; for <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;Lhs&gt; <span class='where'>where Lhs: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a> + <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Sub.html' title='core::ops::Sub'>Sub</a>&lt;Rhs&gt;, Rhs: <a class='trait' href='../peano/trait.NonNeg.html' title='peano::NonNeg'>NonNeg</a>, Lhs::Output: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a></span></code></h3><div class='docblock'><p>Subtract positive numbers from negative numbers (e.g. -3 - 4)</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;<a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;Lhs::Output&gt;&gt;</code></h4>
+<h4 id='method.sub' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Sub.html#method.sub' class='fnname'>sub</a>(self, rhs: <a class='struct' href='../peano/struct.Succ.html' title='peano::Succ'>Succ</a>&lt;Rhs&gt;) -&gt; Self::Output</code></h4>
+</div><h3 class='impl'><code>impl&lt;Lhs, Rhs&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Mul.html' title='core::ops::Mul'>Mul</a>&lt;Rhs&gt; for <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;Lhs&gt; <span class='where'>where Lhs: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a> + <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Mul.html' title='core::ops::Mul'>Mul</a>&lt;Rhs&gt;, Rhs: <a class='trait' href='../peano/trait.Peano.html' title='peano::Peano'>Peano</a>, Lhs::Output: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Sub.html' title='core::ops::Sub'>Sub</a>&lt;Rhs&gt;</span></code></h3><div class='docblock'><p>Multiply negative numbers by integers (e.g. -2 * N)</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = Lhs::Output::Output</code></h4>
+<h4 id='method.mul' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Mul.html#method.mul' class='fnname'>mul</a>(self, rhs: Rhs) -&gt; Self::Output</code></h4>
+</div><h3 class='impl'><code>impl&lt;Lhs, Rhs&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Div.html' title='core::ops::Div'>Div</a>&lt;Rhs&gt; for <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;Lhs&gt; <span class='where'>where Lhs: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a> + <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Neg.html' title='core::ops::Neg'>Neg</a>, Rhs: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Neg.html' title='core::ops::Neg'>Neg</a>, <a class='struct' href='../peano/struct.Succ.html' title='peano::Succ'>Succ</a>&lt;Lhs::Output&gt;: DivPrivate&lt;Rhs::Output&gt;, Lhs::Output: <a class='trait' href='../peano/trait.NonNeg.html' title='peano::NonNeg'>NonNeg</a></span></code></h3><div class='docblock'><p>Divide a negative number by a non-zero number (e.g. -4 / 2, -4 / -2).
+Only defined for numbers that are evenly divisible.</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;Lhs&gt;::Output::Output</code></h4>
+<h4 id='method.div' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Div.html#method.div' class='fnname'>div</a>(self, rhs: Rhs) -&gt; Self::Output</code></h4>
+</div><h3 class='impl'><code>impl&lt;N: <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a> + <a class='trait' href='../peano/trait.ToInt.html' title='peano::ToInt'>ToInt</a>&gt; <a class='trait' href='../peano/trait.ToInt.html' title='peano::ToInt'>ToInt</a> for <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;N&gt;</code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../peano/trait.ToInt.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a></code></h4>
+</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl&lt;N: <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> + <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a>&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;N&gt;</code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;N&gt;</code></h4>
+<h4 id='method.clone_from' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div><h3 class='impl'><code>impl&lt;N: <a class='trait' href='http://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> + <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a>&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../peano/struct.Pred.html' title='peano::Pred'>Pred</a>&lt;N&gt;</code></h3><div class='impl-items'></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div>
+            <div class="shortcuts">
+                <h1>Keyboard Shortcuts</h1>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h1>Search Tricks</h1>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>typedef</code> (or
+                    <code>tdef</code>).
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "peano";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>
