@@ -277,14 +277,18 @@ impl<Lhs, Rhs> Div<Rhs> for Pred<Lhs> where Lhs: NonPos + Neg, Rhs: Neg, Succ<<L
 }
 
 
-// DivPrivate only supports positive numerators. As division is implemented via repeated
-// subtraction, we can be sure to only support division between divisible numbers by
-// terminating when the numerator is Zero and not allowing it to become negative. We can
-// support negative numerators by mapping e.g. -4 / 2 to 4 / -2, which is what is done
-// in the implementation of `Div`
-trait DivPrivate<Rhs>: Peano {
-    type Output;
+mod detail {
+    // DivPrivate only supports positive numerators. As division is implemented via repeated
+    // subtraction, we can be sure to only support division between divisible numbers by
+    // terminating when the numerator is Zero and not allowing it to become negative. We can
+    // support negative numerators by mapping e.g. -4 / 2 to 4 / -2, which is what is done
+    // in the implementation of `Div`
+    pub trait DivPrivate<Rhs>: ::Peano {
+        type Output;
+    }
 }
+use detail::DivPrivate;
+
 impl<Rhs: NonZero> DivPrivate<Rhs> for Zero {
     type Output = Zero;
 }
