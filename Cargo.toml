@@ -1,6 +1,6 @@
 [package]
 name = "peano"
-version = "1.0.1"
+version = "1.0.2"
 authors = ["Paho Lurie-Gregg <paho@paholg.com>"]
 description = "The peano numbers implemented in Rust's type system. Consider using typenum instead for much faster type-level numbers."
 homepage = "http://paholg.com/project/peano"
